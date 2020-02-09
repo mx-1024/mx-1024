@@ -138,6 +138,72 @@ ga('send', 'pageview');
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-rank优化路径" class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2020-02-09 10:58:21" datetime="2020-02-09T02:58:21.000Z" itemprop="datePublished">2020-02-09</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/2020/02/09/62333/">推荐系统排序优化迭代的一些经验</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        
+
+rank 路径在几经周折之后，我们几个主要场景的主要排序模型都已经从FM切换到NN上来了。 我们目前主要做的工作还是对常见信息流中图文数据进行ctr预估工作，目前阶段我们还只考虑点击。
+迫于懒，一些冠冕堂皇的屁话就省略了，需要的请自行脑补。
+1. 历史进程
+
+
+
+模型
+offline(AUC)
+Online
+时间
+
+
+
+Simple DNN
+1%
+2%
+201905
+
+
+PCTR
+4.3...
+    
+
+        <a href="/posts/2020/02/09/62333/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/推荐系统/">推荐系统</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-「阅读笔记」Applying-Deep-Learning-To-Airbnb-Search" class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
@@ -210,7 +276,7 @@ ga('send', 'pageview');
         </p>
     </div>
     <div class="bottom">
-        <p><span>mx-1024 &copy; 2019</span>
+        <p><span>mx-1024 &copy; 2019 - 2020</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
@@ -234,6 +300,27 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
 
 
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
 
