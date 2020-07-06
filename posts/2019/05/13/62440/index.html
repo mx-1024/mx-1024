@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     
 <!-- Google Analytics -->
 <script>
@@ -8,7 +8,7 @@ window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
 ga('create', 'UA-140253371-1', 'auto');
 ga('send', 'pageview');
 </script>
-<script async src="https://www.google-analytics.com/analytics.js"></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 <!-- End Google Analytics -->
 
 
@@ -33,13 +33,12 @@ ga('send', 'pageview');
     
     <meta name="keywords" content="推荐系统,阅读笔记">
     <meta name="description" content="之前阅读了了KDD2018上Airbnb发表的 Real-time Personalization using Embeddings for Search Ranking at Airbnb，第一感觉是这篇论文的可实操性非常强，值得一读，相关解读也非常多了。也正式因为上面那篇文章，才又发现了这一篇文章。这篇文章记录了整个Airbnb搜索推荐从传统机器学习模型到深度模型的演进与探索，深入浅出，同时">
-<meta name="keywords" content="推荐系统,阅读笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Applying Deep Learning To Airbnb Search">
 <meta property="og:url" content="http://yoursite.com/posts/2019/05/13/62440/index.html">
 <meta property="og:site_name" content="脑洞">
 <meta property="og:description" content="之前阅读了了KDD2018上Airbnb发表的 Real-time Personalization using Embeddings for Search Ranking at Airbnb，第一感觉是这篇论文的可实操性非常强，值得一读，相关解读也非常多了。也正式因为上面那篇文章，才又发现了这一篇文章。这篇文章记录了整个Airbnb搜索推荐从传统机器学习模型到深度模型的演进与探索，深入浅出，同时">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/posts/2019/05/13/62440/a.png">
 <meta property="og:image" content="http://yoursite.com/posts/2019/05/13/62440/b.png">
 <meta property="og:image" content="http://yoursite.com/posts/2019/05/13/62440/c.png">
@@ -53,13 +52,13 @@ ga('send', 'pageview');
 <meta property="og:image" content="http://yoursite.com/posts/2019/05/13/62440/k.png">
 <meta property="og:image" content="http://yoursite.com/posts/2019/05/13/62440/l.png">
 <meta property="og:image" content="http://yoursite.com/posts/2019/05/13/62440/m.png">
-<meta property="og:updated_time" content="2019-05-15T16:28:00.102Z">
+<meta property="article:published_time" content="2019-05-13T02:58:21.000Z">
+<meta property="article:modified_time" content="2019-05-15T16:28:00.102Z">
+<meta property="article:author" content="mx-1024">
+<meta property="article:tag" content="推荐系统">
+<meta property="article:tag" content="阅读笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Applying Deep Learning To Airbnb Search">
-<meta name="twitter:description" content="之前阅读了了KDD2018上Airbnb发表的 Real-time Personalization using Embeddings for Search Ranking at Airbnb，第一感觉是这篇论文的可实操性非常强，值得一读，相关解读也非常多了。也正式因为上面那篇文章，才又发现了这一篇文章。这篇文章记录了整个Airbnb搜索推荐从传统机器学习模型到深度模型的演进与探索，深入浅出，同时">
 <meta name="twitter:image" content="http://yoursite.com/posts/2019/05/13/62440/a.png">
-    
-        <link rel="alternate" type="application/atom+xml" title="脑洞" href="/atom.xml">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -68,12 +67,12 @@ ga('send', 'pageview');
     <!-- custom head -->
     
 
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu" class="hide">
+    <aside id="menu" class="hide" >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
@@ -93,28 +92,28 @@ ga('send', 'pageview');
       <ul class="nav">
         
             <li class="waves-block waves-effect">
-              <a href="/">
+              <a href="/"  >
                 <i class="icon icon-lg icon-home"></i>
                 Home
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/archives">
+              <a href="/archives"  >
                 <i class="icon icon-lg icon-archives"></i>
                 Archives
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/tags">
+              <a href="/tags"  >
                 <i class="icon icon-lg icon-tags"></i>
                 Tags
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="https://github.com/mx-1024" target="_blank">
+              <a href="https://github.com/mx-1024" target="_blank" >
                 <i class="icon icon-lg icon-github"></i>
                 Github
               </a>
@@ -162,23 +161,24 @@ ga('send', 'pageview');
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-模型演进"><span class="post-toc-text">1. 模型演进</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1-simple-NN"><span class="post-toc-text">1.1 simple NN</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-Lambdarank-NN"><span class="post-toc-text">1.2 Lambdarank NN</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-3-Decision-Tree-Factorization-Machine-NN"><span class="post-toc-text">1.3 Decision Tree/Factorization Machine NN</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-4-Deep-NN"><span class="post-toc-text">1.4 Deep NN</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-一些失败的尝试"><span class="post-toc-text">2. 一些失败的尝试</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-Listing-ID"><span class="post-toc-text">2.1 Listing ID</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-Multi-task-learning"><span class="post-toc-text">2.2 Multi-task learning</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-特征工程"><span class="post-toc-text">3. 特征工程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-Feature-normalization"><span class="post-toc-text">3.1 Feature normalization</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-Feature-distribution"><span class="post-toc-text">3.2 Feature distribution</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-High-cardinality-categorical-features"><span class="post-toc-text">3.3 High cardinality categorical features</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-系统工程"><span class="post-toc-text">4. 系统工程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-超参数"><span class="post-toc-text">5. 超参数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-特征权重"><span class="post-toc-text">6. 特征权重</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-总结"><span class="post-toc-text">7. 总结</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-模型演进"><span class="post-toc-text">1. 模型演进</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1-simple-NN"><span class="post-toc-text">1.1 simple NN</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-Lambdarank-NN"><span class="post-toc-text">1.2 Lambdarank NN</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-3-Decision-Tree-Factorization-Machine-NN"><span class="post-toc-text">1.3 Decision Tree&#x2F;Factorization Machine NN</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-4-Deep-NN"><span class="post-toc-text">1.4 Deep NN</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-一些失败的尝试"><span class="post-toc-text">2. 一些失败的尝试</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-Listing-ID"><span class="post-toc-text">2.1 Listing ID</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-Multi-task-learning"><span class="post-toc-text">2.2 Multi-task learning</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-特征工程"><span class="post-toc-text">3. 特征工程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-Feature-normalization"><span class="post-toc-text">3.1 Feature normalization</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-Feature-distribution"><span class="post-toc-text">3.2 Feature distribution</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-High-cardinality-categorical-features"><span class="post-toc-text">3.3 High cardinality categorical features</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-系统工程"><span class="post-toc-text">4. 系统工程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-超参数"><span class="post-toc-text">5. 超参数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-特征权重"><span class="post-toc-text">6. 特征权重</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-总结"><span class="post-toc-text">7. 总结</span></a></li></ol>
         </nav>
     </aside>
 
 
-<article id="post-「阅读笔记」Applying-Deep-Learning-To-Airbnb-Search" class="post-article article-type-post fade" itemprop="blogPost">
+<article id="post-「阅读笔记」Applying-Deep-Learning-To-Airbnb-Search"
+  class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
         <h1 class="post-card-title">Applying Deep Learning To Airbnb Search</h1>
         <div class="post-meta">
-            <time class="post-time" title="2019-05-13 10:58:21" datetime="2019-05-13T02:58:21.000Z" itemprop="datePublished">2019-05-13</time>
+            <time class="post-time" title="2019-05-13 10:58:21" datetime="2019-05-13T02:58:21.000Z"  itemprop="datePublished">2019-05-13</time>
 
             
 
 
             
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
     <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
 </span>
 
@@ -189,15 +189,17 @@ ga('send', 'pageview');
 <p>之前阅读了了KDD2018上Airbnb发表的 Real-time Personalization using Embeddings for Search Ranking at Airbnb，第一感觉是这篇论文的可实操性非常强，值得一读，相关解读也非常多了。也正式因为上面那篇文章，才又发现了这一篇文章。这篇文章记录了整个Airbnb搜索推荐从传统机器学习模型到深度模型的演进与探索，深入浅出，同时能把很多失败的尝试暴露出来。对于深度学习落地到推荐在线排序来言，基于我目前经验，我觉得还是十分值得一读的。</p>
 </blockquote>
 <a id="more"></a>
+
 <p>原文地址：<a href="https://arxiv.org/pdf/1810.09591.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1810.09591.pdf</a></p>
 <h2 id="1-模型演进"><a href="#1-模型演进" class="headerlink" title="1. 模型演进"></a>1. 模型演进</h2><p>从2017年4月到2018年6月之间共计四次比较大的迭代，离线使用NDCG进行评估。线上使用订单总数作为指标。图中y轴表示相对提升。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="a.png" alt title>
+                    <img src="a.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
+
 <blockquote>
 <p>GBDT是最开始的base 除此之外还有两个有趣的点：1. NDCG的提升幅度和线上最终表现存在差异，并不是说离线评估提升越多，线上表现越好。2. 从Simple NN 到 Lambdarank NN 包含取得确定收益只花费了2个月，而从Lambdaran NN 到 GBDT/FM NN 花费了9个月之久。这部分收益取得的代价可谓是很高了。</p>
 </blockquote>
@@ -213,10 +215,11 @@ ga('send', 'pageview');
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="b.png" alt title>
+                    <img src="b.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
+
 <blockquote>
 <p>这里通过改变不同pair对的权重来优化效果可以理解，但是不明白是的最终权重的选取为什么是NDCG的变化值？ 这点暂时还不是很懂。正好后面也要尝试pairwise loss。这里暂时先留个坑后面再来补充吧</p>
 </blockquote>
@@ -224,10 +227,11 @@ ga('send', 'pageview');
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="c.png" alt title>
+                    <img src="c.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
+
 <h3 id="1-4-Deep-NN"><a href="#1-4-Deep-NN" class="headerlink" title="1.4 Deep NN"></a>1.4 Deep NN</h3><p>上面模型的复杂度令人惊愕。但在尝试将训练数据变成原来的10倍，将模型变成一个简单的只包含两个隐层的DNN模型后，之前的复杂尝试都可以抛弃了。模型很简单，输入层包含195维特征，两个隐层，分别是127和83个ReLU unites。在他们的场景下他们大约使用了17亿的语料（pair对），才使得模型达到比较好的泛化效果。<br>输入到模型里的特征大都是listing的基础属性，比如价格、设施、历史预定数等等，这些特征通过尽可能少的特征工程后直接输入到模型中。除此外还有一些其它模型产出的特征：智能定价模型输出的价格特征和embedding的相似度特征，因为这些模型使用的的数据并不是直接参与rank模型训练的样本，从而能为DNN模型带来一些外源信息。</p>
 <blockquote>
 <p>?文章里还表达了一些疑问，比如在cv领域，可以通过人工标注的方式来定义人类水平，从而可以和模型效果进行比较。但这种推荐的业务场景下，日志里并不能反应真正的客观事实，有很多隐藏的信息我们无法捕捉到，很难进行人工评测。这里我简直不能再认同！比如图像识别，文本分类这种都有明确的客观答案，我们是可以通过看case来发现问题的，从而优化模型效果。但推荐这种场景，我怎么知道你最终为啥没点击/预定？（没准上分钟在看房，下一分钟你朋友打电话告诉你他刚在那买了新的房子，你可以过去住！尽管你已经在输入支付密码了，你还是有可能取消） 我在我们的场景下也看过若干case（迫于年轻），也看不出啥来，而且只能看很少一部分，很难给出一些明确的结论，即便有也只能是一些泛泛而谈的屁话。我们也有一些业务上的专家试图从case上发现问题，但在我看来往往都带有很强的主观色彩，并不能使我信服，而且更严重的这种主观上的你觉得推荐结果有问题，鸡蛋里总是能挑出骨头的。</p>
@@ -237,19 +241,21 @@ ga('send', 'pageview');
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="d.png" alt title>
+                    <img src="d.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
+
 <p>作者认为这个已经被别人验证有效的方法在这里行不通的原因主要和业务形态有关系。embedding需要一个同个item有大量的语料来给出适当的取值，这在NLP任务或者视频推荐任务中都是可行的，同一个单词或者视频都可以大量重出现。但在他们的场景下，Listing受到真实世界的物理制约，同一个Listing只能出现在一个市场，同时每天只能被预定一次，一年至多只能被预定365次。然而典型情况下一个房间被预定的次数往往更少，同个Listing数据非常稀疏，这直接导致了模型过拟合。</p>
 <h3 id="2-2-Multi-task-learning"><a href="#2-2-Multi-task-learning" class="headerlink" title="2.2 Multi-task learning"></a>2.2 Multi-task learning</h3><p>虽然预定这个操作受到物理因素的限制，但是详情页浏览缺不受到这种约束（这里我也没明白作者想表达什么意思… 大概需要理解他们的业务背景）。他们发现了long view（这里应该是详情页长停留时长？）和种种的booking ratio之间存在某些关联。他们认为这是因为某些listing比较稀疏导致的过拟合。作者尝试使用Multi-task learning的方式对booking probability和long view同时进行建模。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="e.png" alt title>
+                    <img src="e.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
+
 <p>模型结构如上图，两部分输出使用独立的输出层，共享隐层。预期是模型能够从学习到从long view到bookings的转换从而来避免overfitting。由于long view的数量和booking的数量有着巨大的差异，所以重新设计了损失函数，所以针对booking loss给了很高的权重来使得模型保持针对booking的预测。long view用log(view_duration)进行scale。线上排序过程中，仅针对booking进行预测。<br>然而在线上实验发现，booking没有提升，但是long view的比例缺大大提升了。通过手动查阅那些Long view和booking的case发现有一下一些原因可能导致这些问题：listing非常高端，同时价钱也很高；详情页描述信息冗长；十分特殊或者搞笑的描述以及种种其他原因。long view和booking之间的关联也是Airbnb业务上的独特之处，但在一些场景下却没什么相关性，这也使得基于Long view的booking预测模型十分具有挑战性。这些成为了他们接下来要深入研究的一个问题。</p>
 <blockquote>
 <p>从业务中发现问题，同时再将业务问题用模型的思路去解。也许同样的方法别人能够取得非常好的效果，但在自己的场景下可能并带不来指标上的提升，这不是因为工程没有做好，很可能是因为业务上存在的特殊性导致。而这些除了亲自采坑之外，只能结合业务场景和技术内部原理进行预判了（要求不是一般的高）</p>
@@ -264,58 +270,67 @@ ga('send', 'pageview');
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="f.png" alt title>
+                    <img src="f.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
+
 <p>这些图也给了作者一些启发：DNN之所以能在当前场景下有着不错的泛化效果，是因为构建的模型特征很多，特征组合的空间会非常大，在训练过程中模型也只能cover一部分信息。在较低的隐层中特征分布越加平滑，保证了在后面的隐层能更好的响应那些未见过的特征值。因为，作者尝试最大限度的让输入层的特征分布平滑。<br>除了进行线上测试外，作者还找到了一个有效的离线检测的方法。他们针对测试集里的某个特征进行缩小或者放大，然后观察测试集上的NDCG变化情况。最终发现NDCG非常稳定，也就是说模型能够在未见过的样本上表现同样稳定。<br>大部分特征在进行排错和适当的标准化后，其分布都会变得平滑。但是有些特殊的特征仍旧需要进行一些处理，比如list的geo信息。下面两个图是list的纬度和精度的原始值分布情况。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="g.png" alt title>
+                    <img src="g.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
+
 <p>可见，经纬度的分布非常不平滑。为了使得特征变得更加平滑，作者计算了list实际位置到用户看到的地图中心的偏移量。变成了下面这样。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="h.png" alt title>
+                    <img src="h.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
+
 <p>看起来数据在图中部十分集中，是因为地图尾部数据导致数据被缩放。再进一步使用log()对经纬度进行变换。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="i.png" alt title>
+                    <img src="i.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
+
 <p>其特征值对应的分布也变得平滑许多。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="j.png" alt title>
+                    <img src="j.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
+
 <p>需要注意的是，在这里的针对经纬度进行的一系列变换是有损的，其会将多个位置映射到相同的偏移量上，这使得模型能够学习到基于距离的全局特征，而不是一些基于特定地理位置的特征。至于特定地理位置的特征，则使用高基数的类别特征进行刻画。<br><strong>Check feature completeness.</strong>  在做一些场景下，分析那些不平滑的特征也能帮助我们发现模型缺失的特征。作者举了个例子，在他们的场景下有个未来可预定天数这样一个特征来刻画list的质量。但是这个值分布不平滑。结合业务发现有些list有最短预定时间的要求，这直接影响了这一特征。但是他们的做法是并没有直接将最短停留时间和这个特征放到模型中，他们认为这个特征和日期相关，设计起来非常复杂。他们使用了list的平均预定天数对这个特征进行了标准化。最终特征在新的这个高维空间上变得平滑。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="k.png" alt="k" title>
+                    <img src="k.png" alt="k" title="">
                 </div>
                 <div class="image-caption">k</div>
             </figure>
+
+
 <h3 id="3-3-High-cardinality-categorical-features"><a href="#3-3-High-cardinality-categorical-features" class="headerlink" title="3.3 High cardinality categorical features"></a>3.3 High cardinality categorical features</h3><p>除了listing_id外，作者还尝试了其他类似的特征。其中有些通过简单的特征加工就在NN里取得了比较不错的效果，比如街道信息。在之前的GBDT模型中需要有一个复杂的流程来追踪社区和城市的预定等级分布。然而在NN模型中，交给模型自己处理这类信息是非常简单的，他们通过将用户query和listing的位置信息组合创建了一个新的类别特征。以San Francisco为例，通过level 12的S2编码，一个Embarcadero附近的listing，其位置信息可以标识为(539058204)，然后通过某种hash方式可以将{“San Francisco”, 539058204}表示为71829521。然后直接使用这个hash后的数值来构建类别特征。这个数值可以作为embedding信息输入到NN。在模型训练过程中，模型能够捕捉到embedding背后所编码进去的S2 cell和query信息。<br>可以从下图中看出，针对给出的San Francisco这个例子来说，模型学习的效果符合他们预期：高亮的点除了标记处城市中受欢迎的的位置外，同时还表明了对更远的位置的偏好，而不是最靠近大桥的位置，因为那里是交通最拥堵的地方。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="l.png" alt="l" title>
+                    <img src="l.png" alt="l" title="">
                 </div>
                 <div class="image-caption">l</div>
             </figure>
+
+
 <h2 id="4-系统工程"><a href="#4-系统工程" class="headerlink" title="4. 系统工程"></a>4. 系统工程</h2><p>这部分简单介绍了他们的系统流程和中间遇到的一些坑，服务端使用java编写，主要负责召回和排序两件事，同时把日志保存下来用于离线训练，使用Thrift对原始数据进行序列化。使用spark对数据进行处理，构建训练语料。使用TensorFlow训练模型，离线的统计/评估脚本大多使用Java/Scala进行编写。最终模型会放在Java的服务端进行使用。<br><strong>Protobufs and Dataset.</strong>  他们之前的GBDT的训练流程使用的都是csv格式的语料。在迁移到TensorFlow的时候尽可能多的复用了以前的流程。所以最开始他们使用了feed_dict这个api输入数据（众所周知，这个api实在是慢），也忽略效率了这一问题。等他们发现他们机器的GPU的利用率只有25 %不到的时候他们才反应过来（偷笑）他们大部分训练时间都话费在了解析数据上。作者用「骡子拖法拉利」来形容他们当时的状态。最终他们改用Protobuf组织数据，并使用data_set后，训练速度提升了17倍，GPU利用率也提升到了90，最终使他们的训练语料的大小从数周提升到了数月。<br><strong>Refactoring static features.</strong> 在Airbnb的场景下，listing有很多特征很少发生变化，比如房间数目，地理位置等，在构建样本的时候提取这些特征会造成一些输入上的瓶颈。为了解决这一问题，他们仅仅将Listing_id作为一个类别特征使用，通过Listing_id构建了一个不可训练的embedding，试图通过这个embedding表达所有这些近乎静态的特征。这样一来，降低了从硬盘上读取数据的大小，从而可以探索更多用户的历史行为数据。<br><strong>Java NN laibrary.</strong>  最早从2017年开始，他们就试图将TensorFlow的模型放到产品里使用。如果使用调用其他编程语言的库，数据转换会耗费大量时间，无法满足线上排序对延时的要求，所以他们使用java实现了线上排序部分。</p>
 <blockquote>
 <p>作者他们遇到的工程问题可以说是很真实了……（我们踩了同样的坑。我们遇到的坑除了训练效率问题外，还有一点就是我们在小流量实践NN模型的时候，线上还保留了旧版本的模型，我们需要复用同一个pipeline，换言之我们在日志中序列化保存的数据是另外一种中间结果，我们离线去做一些转换，来同时支持我们NN模型和原有模型的训练。因为保存的中间结果，线上服务使用C++编写，离线格式转NN使用的是python，相同的逻辑用不同语言实现了两次，导致这里曾经出现了一些不一致的地方，后续排查问题的时候也带来了一些困扰，在系统设计初期应该尽量避免这些问题。另外，我们这边线上排序的时间也是十分有限，大约100ms，使用TF Serving数据传输耗时大约在10ms左右。目前采取的方案是，实验模型使用TF Serving进行预测，待模型稳定后，使用C++代码实现模型线上排序部分以降低耗时。</p>
@@ -325,10 +340,11 @@ ga('send', 'pageview');
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="m.png" alt title>
+                    <img src="m.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
+
 <blockquote>
 <p>虽然他们找了很多方法去分析特征权重，但都没有拜托条件独立的困扰，似乎TopBot Analysis 算是一个可行的方法。</p>
 </blockquote>
@@ -364,7 +380,7 @@ ga('send', 'pageview');
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/推荐系统/">推荐系统</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/阅读笔记/">阅读笔记</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" rel="tag">推荐系统</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="tag">阅读笔记</a></li></ul>
 
 
             
@@ -444,10 +460,10 @@ ga('send', 'pageview');
     <div class="top">
         
 <p>
-    <span id="busuanzi_container_site_uv" style="display:none">
+    <span id="busuanzi_container_site_uv" style='display:none'>
         站点总访客数：<span id="busuanzi_value_site_uv"></span>
     </span>
-    <span id="busuanzi_container_site_pv" style="display:none">
+    <span id="busuanzi_container_site_pv" style='display:none'>
         站点总访问量：<span id="busuanzi_value_site_pv"></span>
     </span>
 </p>
@@ -455,9 +471,7 @@ ga('send', 'pageview');
 
         <p>
             
-                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
-            
-            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
@@ -505,7 +519,7 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 
-<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 

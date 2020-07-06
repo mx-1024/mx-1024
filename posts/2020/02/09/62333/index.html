@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     
 <!-- Google Analytics -->
 <script>
@@ -8,7 +8,7 @@ window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
 ga('create', 'UA-140253371-1', 'auto');
 ga('send', 'pageview');
 </script>
-<script async src="https://www.google-analytics.com/analytics.js"></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 <!-- End Google Analytics -->
 
 
@@ -32,14 +32,11 @@ ga('send', 'pageview');
     
     
     <meta name="keywords" content="推荐系统">
-    <meta name="description" content="rank 路径在几经周折之后，我们几个主要场景的主要排序模型都已经从FM切换到NN上来了。 我们目前主要做的工作还是对常见信息流中图文数据进行ctr预估工作，目前阶段我们还只考虑点击。 迫于懒，一些冠冕堂皇的屁话就省略了，需要的请自行脑补。 1. 历史进程    模型 offline(AUC) Online 时间    Simple DNN 1% 2% 201905   PCTR 4.30%">
-<meta name="keywords" content="推荐系统">
-<meta property="og:type" content="article">
+    <meta property="og:type" content="article">
 <meta property="og:title" content="推荐系统排序优化迭代的一些经验">
 <meta property="og:url" content="http://yoursite.com/posts/2020/02/09/62333/index.html">
 <meta property="og:site_name" content="脑洞">
-<meta property="og:description" content="rank 路径在几经周折之后，我们几个主要场景的主要排序模型都已经从FM切换到NN上来了。 我们目前主要做的工作还是对常见信息流中图文数据进行ctr预估工作，目前阶段我们还只考虑点击。 迫于懒，一些冠冕堂皇的屁话就省略了，需要的请自行脑补。 1. 历史进程    模型 offline(AUC) Online 时间    Simple DNN 1% 2% 201905   PCTR 4.30%">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/posts/2020/02/09/62333/merge_epoch.png">
 <meta property="og:image" content="http://yoursite.com/posts/2020/02/09/62333/score_models_train_separately.png">
 <meta property="og:image" content="http://yoursite.com/posts/2020/02/09/62333/pctr.jpg">
@@ -48,13 +45,12 @@ ga('send', 'pageview');
 <meta property="og:image" content="http://yoursite.com/posts/2020/02/09/62333/nn_2.png">
 <meta property="og:image" content="http://yoursite.com/posts/2020/02/09/62333/nn_3.png">
 <meta property="og:image" content="http://yoursite.com/posts/2020/02/09/62333/nn_4.png">
-<meta property="og:updated_time" content="2020-02-09T17:16:58.980Z">
+<meta property="article:published_time" content="2020-02-09T02:58:21.000Z">
+<meta property="article:modified_time" content="2020-07-06T18:01:17.818Z">
+<meta property="article:author" content="mx-1024">
+<meta property="article:tag" content="推荐系统">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="推荐系统排序优化迭代的一些经验">
-<meta name="twitter:description" content="rank 路径在几经周折之后，我们几个主要场景的主要排序模型都已经从FM切换到NN上来了。 我们目前主要做的工作还是对常见信息流中图文数据进行ctr预估工作，目前阶段我们还只考虑点击。 迫于懒，一些冠冕堂皇的屁话就省略了，需要的请自行脑补。 1. 历史进程    模型 offline(AUC) Online 时间    Simple DNN 1% 2% 201905   PCTR 4.30%">
 <meta name="twitter:image" content="http://yoursite.com/posts/2020/02/09/62333/merge_epoch.png">
-    
-        <link rel="alternate" type="application/atom+xml" title="脑洞" href="/atom.xml">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -63,12 +59,12 @@ ga('send', 'pageview');
     <!-- custom head -->
     
 
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu" class="hide">
+    <aside id="menu" class="hide" >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
@@ -88,28 +84,28 @@ ga('send', 'pageview');
       <ul class="nav">
         
             <li class="waves-block waves-effect">
-              <a href="/">
+              <a href="/"  >
                 <i class="icon icon-lg icon-home"></i>
                 Home
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/archives">
+              <a href="/archives"  >
                 <i class="icon icon-lg icon-archives"></i>
                 Archives
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/tags">
+              <a href="/tags"  >
                 <i class="icon icon-lg icon-tags"></i>
                 Tags
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="https://github.com/mx-1024" target="_blank">
+              <a href="https://github.com/mx-1024" target="_blank" >
                 <i class="icon icon-lg icon-github"></i>
                 Github
               </a>
@@ -162,25 +158,28 @@ ga('send', 'pageview');
     </aside>
 
 
-<article id="post-rank优化路径" class="post-article article-type-post fade" itemprop="blogPost">
+<article id="post-rank优化路径"
+  class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
         <h1 class="post-card-title">推荐系统排序优化迭代的一些经验</h1>
         <div class="post-meta">
-            <time class="post-time" title="2020-02-09 10:58:21" datetime="2020-02-09T02:58:21.000Z" itemprop="datePublished">2020-02-09</time>
+            <time class="post-time" title="2020-02-09 10:58:21" datetime="2020-02-09T02:58:21.000Z"  itemprop="datePublished">2020-02-09</time>
 
             
 
 
             
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
     <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
 </span>
 
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <a id="more"></a>
+            <blockquote>
+</blockquote>
+<a id="more"></a>
 
 <h1 id="rank-路径"><a href="#rank-路径" class="headerlink" title="rank 路径"></a>rank 路径</h1><p>在几经周折之后，我们几个主要场景的主要排序模型都已经从FM切换到NN上来了。 我们目前主要做的工作还是对常见信息流中图文数据进行ctr预估工作，目前阶段我们还只考虑点击。</p>
 <p>迫于懒，一些<del>冠冕堂皇的屁话</del>就省略了，需要的请自行脑补。</p>
@@ -229,14 +228,14 @@ ga('send', 'pageview');
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="./merge_epoch.png" alt="merge_epoch" title>
+                    <img src="./merge_epoch.png" alt="merge_epoch" title="">
                 </div>
                 <div class="image-caption">merge_epoch</div>
             </figure>
 
 <p>上图是两部分logits的分布，结果也很直观：得分基本由LR部分决定，DNN部分得分对最终结果的影响十分微弱并且集中在0附近。并且随着训练进行，这种情况会越来越明显。最后都只剩下LR了还想着要啥自行车（</p>
 <p>经过几轮的简单的参数调整后，我们发现修改模型参数无法对这个情况产生影响。既然DNN在和LR联合训练尚不能取得比较好的效果情况下，那么可否先对DNN进行预训练，在此基础只上训练WDL？在拆分训练之后，DNN部分的logits符合预期。</p>
-<img src="./score_models_train_separately.png" alt="score_models_train_separately" style="zoom:80%;">
+<img src="./score_models_train_separately.png" alt="score_models_train_separately" style="zoom:80%;" />
 
 <p>遗憾的是到这个时候线上效果依旧和base持平，但这时候我们也意识到WDL对比base，下限取决于你的wide部分，而上限则是deep侧决定的。之前都没试过DNN，就想着一下在WDL上取得成绩，可能不如把问题简化，现在DNN部分上拿到收益，再和LR叠加提升收益。</p>
 <h3 id="2-2-DNN"><a href="#2-2-DNN" class="headerlink" title="2.2 DNN"></a>2.2 DNN</h3><p>大力出奇迹。DNN提升的来源似乎可以用上面几个字概括。在调优DNN方面，首先是使用FM之前全部特征，在经过调整后，AUC和FM的差距大约有0.5%。吸取了之前的经验，我们依旧怀疑引入的特征有问题（这特征有毒，使不得）。</p>
@@ -266,7 +265,7 @@ ga('send', 'pageview');
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="./pctr.jpg" alt="pctr" title>
+                    <img src="./pctr.jpg" alt="pctr" title="">
                 </div>
                 <div class="image-caption">pctr</div>
             </figure>
@@ -298,7 +297,7 @@ ga('send', 'pageview');
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="nn_1.png" alt title>
+                    <img src="nn_1.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
@@ -310,21 +309,21 @@ ga('send', 'pageview');
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="dice.png" alt title>
+                    <img src="dice.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
 
 <p>可以看到，Dice是对PRelu做了平滑，使得拐点不再是固定的0，而是依赖于数据的分布。将Dice运用到我们的模型，AUC大概能提升0.4%，通过模型参数调节和引入Dice激活函数，线上指标大概能提升1.5%。</p>
 <h4 id="2-4-3-引入历史60天点击session"><a href="#2-4-3-引入历史60天点击session" class="headerlink" title="2.4.3 引入历史60天点击session"></a>2.4.3 引入历史60天点击session</h4><p>在使用GRU对用户点击序列建模的过程中，发现历史长度最大取10和最大取100，离线的AUC变化大概在0.2%左右，但是耗时却增加了不少。考虑到模型上线的问题，最后只选取了最近的10次点击。考虑在我们的实际业务中，用户在一段时间可能只对某些主题感兴趣，我们可以将用户的历史点击划分为多个session，然后对每个session去提取相关的topic embedding，这样可以将序列的长度取得更长，同时也不会增加多少耗时。在综合session个数和session内的点击次数后，选取了用户最近的10次点击session，session长度最大取20，这样就可以覆盖200次点击行为。模型的结构如图所示，sessionembedding使用简单的avg pooling方式，离线AUC大概提升了0.275%</p>
-<img src="nn_2.png">
+<img src="nn_2.png"  />
 
 <p>图中Attention sum计算方式如下：<br>$$<br>V_{u}=\sum_{i=0}^{N} w_i<em>v_i=\sum_{i=0}^{N}g(V_i,V_a)</em>V_i<br>$$<br>其中<code>g()</code>表示Attention计算函数，<code>V_i</code> 表示历史点击，<code>V_a</code>表示目标item。</p>
 <h4 id="2-4-4-使用multi-head-self-attention表征session"><a href="#2-4-4-使用multi-head-self-attention表征session" class="headerlink" title="2.4.4 使用multi-head self attention表征session"></a>2.4.4 使用multi-head self attention表征session</h4><p>前面的模型非常简单粗暴的使用Avg Pooling来表征session，无法刻画session内行为间的相关性，同时session内可能也有噪声，有些点击是偏离topic。为了解决这个问题，使用Multi-head self-attention对每个session建模，同时为了刻画不同session间的顺序，使用Bias Encoding，离线测试AUC大概能提升0.22%。模型设计参照<a href="https://arxiv.org/pdf/1905.06482.pdf" target="_blank" rel="noopener">DSIN</a>实现，模型结构如下：</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="nn_3.png" alt title>
+                    <img src="nn_3.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
@@ -334,7 +333,7 @@ ga('send', 'pageview');
 <h4 id="2-4-5-引入BiLSTM刻画session演变"><a href="#2-4-5-引入BiLSTM刻画session演变" class="headerlink" title="2.4.5 引入BiLSTM刻画session演变"></a>2.4.5 引入BiLSTM刻画session演变</h4><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="nn_4.png" alt title>
+                    <img src="nn_4.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
@@ -367,7 +366,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-02-09T17:16:58.980Z" itemprop="dateUpdated">2020-02-10 01:16:58</time>
+    最后更新时间：<time datetime="2020-07-06T18:01:17.818Z" itemprop="dateUpdated">2020-07-07 02:01:17</time>
 </span><br>
 
 
@@ -387,7 +386,7 @@ ga('send', 'pageview');
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/推荐系统/">推荐系统</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" rel="tag">推荐系统</a></li></ul>
 
 
             
@@ -397,7 +396,14 @@ ga('send', 'pageview');
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/2020/07/07/47603/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Node2vec在推荐系统中的简单应用</h4>
+      </a>
+    </div>
   
 
   
@@ -467,10 +473,10 @@ ga('send', 'pageview');
     <div class="top">
         
 <p>
-    <span id="busuanzi_container_site_uv" style="display:none">
+    <span id="busuanzi_container_site_uv" style='display:none'>
         站点总访客数：<span id="busuanzi_value_site_uv"></span>
     </span>
-    <span id="busuanzi_container_site_pv" style="display:none">
+    <span id="busuanzi_container_site_pv" style='display:none'>
         站点总访问量：<span id="busuanzi_value_site_pv"></span>
     </span>
 </p>
@@ -478,9 +484,7 @@ ga('send', 'pageview');
 
         <p>
             
-                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
-            
-            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
@@ -528,7 +532,7 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 
-<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 
