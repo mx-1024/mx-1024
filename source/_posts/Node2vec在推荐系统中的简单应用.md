@@ -77,11 +77,11 @@ $\pi_{vx}$ 是顶点 $v$ 和顶点 $x$ 之间未经过归一化的转义概率�
 
 作者在Random Walks的基础上为每一步Walk引入了偏置 $\alpha$ ，进而通过超参数 $p$ 和 $q$ 来控制随机游走的策略。 如图所示
 
-![](image-20200702213310538-1594054840413.png)
+![](image-20200702213310538.png)
 
 假设当前随机游走经过边 $(t,v)$ 到达顶点 $v$ ，令 $\pi_{vx}=\alpha_{pq}(t,x) \cdot w_{vx}$ , $w_{vx}顶点 $v$ 和 $x$ 之间的权重。
 
-$$ \alpha_{pq}(t,x) = \begin{cases} \frac{1}{p}, & ifd_{tx}=0 \\ 1, & ifd_{tx} = 1\\    \frac{1}{q}, & if d_{tx}=2 \end{cases} $$
+$$ \alpha_{pq}(t,x) = \begin{cases} \frac{1}{p}, & ifd_{tx}=0 \\ 1, & ifd_{tx} = 1 \\    \frac{1}{q}, & if d_{tx}=2 \end{cases} $$
 
 其中 $d_{tx}$ 表示顶点 $t$ 和顶点 $x$ 之间的最短距离，且 $d_{tx}$ 的取值范围必须为 $\{0, 1, 2\}$ 其中之一。
 
