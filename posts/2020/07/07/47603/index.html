@@ -37,13 +37,13 @@ ga('send', 'pageview');
 <meta property="og:url" content="http://yoursite.com/posts/2020/07/07/47603/index.html">
 <meta property="og:site_name" content="脑洞">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/posts/2020/07/07/47603/image-20200702213310538-1594054840413.png">
+<meta property="og:image" content="http://yoursite.com/posts/2020/07/07/47603/image-20200702213310538.png">
 <meta property="article:published_time" content="2020-07-06T16:57:06.000Z">
-<meta property="article:modified_time" content="2020-07-06T17:10:52.194Z">
+<meta property="article:modified_time" content="2020-07-07T14:02:51.132Z">
 <meta property="article:author" content="mx-1024">
 <meta property="article:tag" content="推荐系统">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/posts/2020/07/07/47603/image-20200702213310538-1594054840413.png">
+<meta name="twitter:image" content="http://yoursite.com/posts/2020/07/07/47603/image-20200702213310538.png">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -199,19 +199,19 @@ ga('send', 'pageview');
 <p><strong>顶点采样策略</strong></p>
 <p>node2vec依然采用随机游走的方式获取顶点的近邻序列，不同的是Node2vec会依照边的权重进一步计算转移概率进行有偏的随机游走。</p>
 <p>给定当前节点为$u$ 其访问的下一个节点为$x$ 其概率为</p>
-<p>$$ P(c_i =x|c_{i_1}=v)  =<br>\begin{cases}<br>\frac{\pi_{vx}}{z} &amp; if(v,x) \in E \<br>0  &amp; otherwise<br>\end{cases} $$</p>
+<p>$$ P(c_i =x|c_{i_1}=v)  =<br>\begin{cases}<br>\frac{\pi_{vx}}{z} &amp; if(v,x) \in E \\<br>0  &amp; otherwise<br>\end{cases} $$</p>
 <p>$\pi_{vx}$ 是顶点 $v$ 和顶点 $x$ 之间未经过归一化的转义概率，$Z$ 是归一化常数。</p>
 <p>作者在Random Walks的基础上为每一步Walk引入了偏置 $\alpha$ ，进而通过超参数 $p$ 和 $q$ 来控制随机游走的策略。 如图所示</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="image-20200702213310538-1594054840413.png" alt="" title="">
+                    <img src="image-20200702213310538.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
 
 <p>假设当前随机游走经过边 $(t,v)$ 到达顶点 $v$ ，令 $\pi_{vx}=\alpha_{pq}(t,x) \cdot w_{vx}$ , $w_{vx}顶点 $v$ 和 $x$ 之间的权重。</p>
-<p>$$ \alpha_{pq}(t,x) = \begin{cases} \frac{1}{p}, &amp; ifd_{tx}=0 \ 1, &amp; ifd_{tx} = 1\    \frac{1}{q}, &amp; if d_{tx}=2 \end{cases} $$</p>
+<p>$$ \alpha_{pq}(t,x) = \begin{cases} \frac{1}{p}, &amp; ifd_{tx}=0 \\ 1, &amp; ifd_{tx} = 1 \\    \frac{1}{q}, &amp; if d_{tx}=2 \end{cases} $$</p>
 <p>其中 $d_{tx}$ 表示顶点 $t$ 和顶点 $x$ 之间的最短距离，且 $d_{tx}$ 的取值范围必须为 ${0, 1, 2}$ 其中之一。</p>
 <p>参数 $p$ 控制一次游走返回上次顶点的可能性。其并不直接控制游走过程是DFS还是BFS， $p$ 只控制游走的区域是一直接近起点还是逐渐远离起点。</p>
 <p>参数 $q$ 控制一次游走向内游走还是向外游走。 其决定了随机游走的方式，结合参数 $q$ ，通过若干次游走采样，能更全面的表征网络信息。</p>
@@ -337,7 +337,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-07-06T17:10:52.194Z" itemprop="dateUpdated">2020-07-07 01:10:52</time>
+    最后更新时间：<time datetime="2020-07-07T14:02:51.132Z" itemprop="dateUpdated">2020-07-07 22:02:51</time>
 </span><br>
 
 
