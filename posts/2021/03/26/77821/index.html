@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-140253371-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="google3b48fbc60c1bd170.html">
+    
+    
+    
+    
+    <title>推荐系统公平性优化 | 脑洞 | 框架 结构 混沌 邪</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="推荐系统">
+    <meta name="description" content="(未完待续)  总结这些东西好累……">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推荐系统公平性优化">
+<meta property="og:url" content="http://yoursite.com/posts/2021/03/26/77821/index.html">
+<meta property="og:site_name" content="脑洞">
+<meta property="og:description" content="(未完待续)  总结这些东西好累……">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/posts/2021/03/26/77821/1.jpeg">
+<meta property="og:image" content="http://yoursite.com/posts/2021/03/26/77821/2.png">
+<meta property="og:image" content="http://yoursite.com/posts/2021/03/26/77821/3.png">
+<meta property="article:published_time" content="2021-03-26T14:16:31.000Z">
+<meta property="article:modified_time" content="2021-03-26T14:41:02.019Z">
+<meta property="article:author" content="mx-1024">
+<meta property="article:tag" content="推荐系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/posts/2021/03/26/77821/1.jpeg">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">mx-1024</h5>
+          <a href="mailto:xiaoqijian05@gmail.com" title="xiaoqijian05@gmail.com" class="mail">xiaoqijian05@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/mx-1024" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">推荐系统公平性优化</div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">推荐系统公平性优化</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2021-03-26T14:16:31.000Z" itemprop="datePublished" class="page-time">
+  2021-03-26
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-背景"><span class="post-toc-text">1. 背景</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-样本采样"><span class="post-toc-text">2. 样本采样</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-采样的几轮迭代"><span class="post-toc-text">2.1 采样的几轮迭代</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2-从公平性以及负样本增强的角度理解样本采样"><span class="post-toc-text">2.2 从公平性以及负样本增强的角度理解样本采样</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-3-样本采样的延伸思考与尝试"><span class="post-toc-text">2.3 样本采样的延伸思考与尝试</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-偏差修正"><span class="post-toc-text">3. 偏差修正</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-1-直接作为特征输出模型"><span class="post-toc-text">3.1 直接作为特征输出模型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-2-子网络相关尝试"><span class="post-toc-text">3.2 子网络相关尝试</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-推荐系统公平性优化"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">推荐系统公平性优化</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2021-03-26 22:16:31" datetime="2021-03-26T14:16:31.000Z"  itemprop="datePublished">2021-03-26</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>(未完待续)  总结这些东西好累……</p>
+</blockquote>
+<a id="more"></a>
+
+<h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p>在过去的一段时间里我和同事们分别在推荐系统的精排环节做了很多探索，最初大部分尝试都是基于一些底层思考，零散的想法，在不成系统的情况下进行单点优化取得了各种各样的效果，往往都是有了结果才反推整个系统层面更深层次的原理，现在就算是给过去成功的一些实验和优化找个成功的理由吧。</p>
+<p>基于过去很长一段时间的观察，虽然语料/模型结构/特征三板斧仍还能给模型带来一些提升的空间，能在短期ab实验中取得提升，但这种朝着春短期目标进行优化，带来的马太效应我们很难观察到。对于整个推荐系统而言，三板斧其只能说是解决问题的工具或者是一种手段，而问题是什么，我们这么做是解决了什么问题，我觉得是更加值得深入和思考的。</p>
+<p><del>（开始废话，机械吟唱）</del>众所周知，推荐系统的核心目标很多时候都是短期目标（例如短期的点击、交易），单纯朝短期目标进行优化将会导致严重的”马太效应“，即热门的商品受到更多的关注，冷门商品则愈发的会被遗忘，产生了系统中的系统偏差，并且系统的迭代大都依赖于页面浏览数据，而曝光数据是实际候选中经过模型选择的一个子集，不断地依赖模型选择的数据与反馈再进行训练，将形成选择性偏差。上述系统偏差与选择性偏差不断积累，就会导致系统中的“马太效应”越来越严重，短期数据向好，长期来看系统会变得越发诡异。当完成一轮用户筛选后，系统基本已经很难“自救”了（ 很遗憾，我现在做的系统就是这个样子了。），我能想到的只有强有力的外力（运营干预，加大力度用钱干预，再加上算法分发上的配合）才能扭转（只能指望大力出奇迹了）。而我们最近所做的事情都可以粗浅的理解为优化整个推荐系统的公平性，缓解马太效应来解释。</p>
+<p>具体做的事情对照起来可以从用户和资源两个层面来划分：</p>
+<ul>
+<li><p>用户层面：改变模型输入的训练语料，从用户层面对语料进行新的采样（选择偏差）</p>
+</li>
+<li><p>资源层面：</p>
+<ul>
+<li>模型中加入各类bias特征，降低曝光位置带来的样本偏差（选择偏差）</li>
+<li>模型排序中加入 dibiasing 策略，降低系统头部资源分发（系统偏差）</li>
+</ul>
+</li>
+</ul>
+<p>至于选择偏差和系统偏差是我个人概括的</p>
+<p>​    选择偏差：是因为外部<strong>客观条件造成</strong>的，比如前端样式导致的数据在不同位置被曝光的位置不同，或者是日志打点筛选造成的</p>
+<p>​    系统偏差：是因为内部<strong>迭代自循环</strong>造成的，比如马太效应，冷启动时候大规模使用低俗数据，只有喜欢这部分数据的用户留了下来，这批用户又再次强化低俗数据，循环往复，马太效应越来越显著。</p>
+<h1 id="2-样本采样"><a href="#2-样本采样" class="headerlink" title="2. 样本采样"></a>2. 样本采样</h1><p>对于语料采样，我了解到的是很多场景都有在应用，但该部分工作都非常依赖具体业务场景，都是根据业务经验而来，没有啥系统性的经验可以学习，而且因为改变了样本分布，离线评估和旧版本往往也是不可比较的，只能靠线上效果来评估，很少有人深入介绍（<del>人类的悲欢并不相通，我只觉得他们吵闹</del>)。直到去年的时候看到了<a href="https://zhuanlan.zhihu.com/p/165064102" target="_blank" rel="noopener">负样本为王：评Facebook的向量化召回算法</a> 这篇文章，同时去翻看了<a href="https://arxiv.org/abs/2006.11632" target="_blank" rel="noopener">Embedding-based Retrieval in Facebook Search</a> 这篇文章。文章内容我觉得对与Embedding召回来讲，无论是模型结构上还是Loss设计、离线评估，概括来讲都是很常见的做法，但对于语料选取的内容以及HNM（Hard Negative Mining）这种概念的提出以及深入挖掘绝对是文章中最突出的部分。</p>
+<h2 id="2-1-采样的几轮迭代"><a href="#2-1-采样的几轮迭代" class="headerlink" title="2.1 采样的几轮迭代"></a>2.1 采样的几轮迭代</h2><p>最开始的时候做语料采样，我们所要解决的问题只是说样本ctr过低，大部分无点击用户贡献了大量的负样本，这导致模型正负样本不够均衡，使得模型学习困难。我们最开始也是仅仅采用了点击用户语料做第一阶段的语料采样，模型才能够初步上线。</p>
+<p>到第二个版本迭代的时候就需要理解我们的业务场景了：一个容器类型的推荐流，上方有各种搜索框，各种跳转超链接等（类似于美团首页下面的猜你喜欢）但pc端版面原因，到这这部数据在前端开来已经曝光给用户了，但实际上用户来的意图可能是用超链接或者是搜索框，这部分用户的“曝光”数据真的可以叫食之无味，我们尝试使用最近5min有点击用户的语料，用来寻找真的在使用整个推荐流的用户，过滤掉那些使用其他功能的用户曝光。经过这样一轮调整后我们又迎来了一个令人惊喜的提升。</p>
+<div align=center><img src="1.jpeg" style="zoom:50%;"/></div>
+
+<p>第三个阶段的时候是针对第二阶段采样结果的进一步探索，分析发现大量进入训练数据的日志用户在5分钟内点击次数仅为1次，这部分用户点击率很低贡献了很大一部分负样本。这时候发现了一个问题：我们的系统是10%的用户贡献了80%的点击，而我们训练的时候可能选择了40%用户的样本训练模型，试图去更好的为这10%的用户服务，这10%的用户很大程度上决定了整个系统最终的表现，可以理解为训练数据（40%用户）的分布可能和真正价值（10%用户）的分布不一致，里面包含了大量冷用户的噪声。</p>
+<p>基于这种思考，我们尝试采取了更加严格的语料采样逻辑：仅保留了5分钟内有连续刷屏行为的用户的负样本，同时对这些负样本进行重复采样，来保证训练样本整体的正负样本比例。这样实验之后提升效果也是显著的：大约收获了4%的提升。</p>
+<h2 id="2-2-从公平性以及负样本增强的角度理解样本采样"><a href="#2-2-从公平性以及负样本增强的角度理解样本采样" class="headerlink" title="2.2 从公平性以及负样本增强的角度理解样本采样"></a>2.2 从公平性以及负样本增强的角度理解样本采样</h2><p>说到这里，其实还没有讲到任何和公平性有关的东西，说来惭愧，直到我做到这个阶段都没有从公平性的角度对问题进行一点点思考，纯属就是各种摸索出来的采样逻辑。如果从公平性的角度考虑问题，我们在解决的核心问题就是：我们模型的训练语料对用户是否是公平的？可能有一种声音是说：我们是在认为的加速不公平，大量用户的负样本都被我们抛弃了，每个用户组上都是不公平的。但恰恰相反：模型的服务用户是所有用户是没有错，但并不是所有用户都产生价值了，公平性是要和最终目标相匹配。不是说绝对的一碗水端平，而是要让价值最大的用户群对模型的贡献也最大化。</p>
+<p>下面这张图反应了在不同用户组上（根据用户活跃度从低到高分为了0-7总共8个组别）的负样本占比情况v0、v1</p>
+<p>、v2分别代表了三次迭代的情况。两次迭代都朝着让价值更高的用户贡献更多的负样本的方向优化：数据对模型的贡献和模型对结果的贡献更加匹配。</p>
+<div align=center><img src="2.png" alt="image-20210325194124793" style="zoom: 60%;"/> </div>
+
+<p>v3版本上线后对照v2版本在最活跃的7号用户组上提升最为显著，也同样符合前面的理解。我最开始对于提升的认知仅仅局限在两种粗浅业务上的理解：</p>
+<ul>
+<li>活跃用户的负样本比冷用户的负样本噪声更小</li>
+<li>活跃用户的负样本资源多样性更好，冷用户负样本item绝对量比较少</li>
+</ul>
+<p>后来到样本公平性的提升的理解更多的也是基于推荐系统业务的解释。至于底层的思考就要说回到前面负样本的挖掘了。</p>
+<p>做负样本采样的本质上就是对负样本的再次挖掘，挖掘Hard Negative增强样本。对于我们业务场景来讲，冷用户启动过程中使用的数据往往都是以高热数据为主的优质数据，其候选空间在整个个性化推荐的资源空间中只占了很少一部分，而且这些用户行为偏少，特征也十分稀疏，却因为用户数量众多而产生了大量训练样本。这类样本对于精排模型来讲可以归类为Easy Negative，已经可以被复杂的精排模型一眼看穿，活跃用户上深度个性化，很少看到这类资源，达不到训练模型的目的。同样的活跃用户的负样本，因为用户本身行为丰富，召回的资源空间总量更大，特征更加稠密，能够做到与正样本足够接近，增大了模型的学习难度。</p>
+<h2 id="2-3-样本采样的延伸思考与尝试"><a href="#2-3-样本采样的延伸思考与尝试" class="headerlink" title="2.3 样本采样的延伸思考与尝试"></a>2.3 样本采样的延伸思考与尝试</h2><p>语料采样会带来新的问题：被抛弃的用户的负样本真的就不重要么？这样筛选样本会不会越做越窄？</p>
+<p>首先样本重要么？个人认为是不重要的，重不重要看其对于结果的贡献。</p>
+<p>会不会越做越窄？通过模型上线后的结果反观效果：不会的，所用用户组上均有提升，最冷的用户组上相对别1-6号组上还高一些。分析是冷用户组上之前的负样本的噪声太大了，大部分负样本并不能反应这些用户的真实反馈。</p>
+<p>当然在冷用户的样本上也有提升是令人惊喜的，就算是负收益，个人认为也要从全局出发先做整体的提升，能够明确到冷用户的影响，后续再单独去优化那部分效果，聚焦核心目标。</p>
+<p>我们能不能不用样本采样来达到同样的目的？采样容易，后面流程就再也见不到这部分数据了，可能当前并不是最优解，会限制后面优化。既然样本采样本质上样本加权的一个特例，那么是否可以通过样本加权达到同样的目的，答案当然是可以的，但是我没有尝试……毕竟调权重这东西更蛋疼也难以解释，在别的场景我同事通过加特征的方式在非采样语料上达到了采样语料的效果，并没有选择采样后的语料。但是特征又是对样本的另一种理解了，个人也倾向这种方法，在这个场景下我没有进一步尝试。</p>
+<p>除此之外，我尝试了google相关同学提出的Focused Learing的方法<a href="http://alexbeutel.com/papers/www2017_focused_learning.pdf" target="_blank" rel="noopener">Beyond Globally Optimal: Focused Learning for Improved Recommendations</a> 也可以参见知乎专栏文章<a href="https://zhuanlan.zhihu.com/p/38031360" target="_blank" rel="noopener">推荐系统中的公平性——谷歌Focused Learning研究</a> Focus意即专注，也就是在原本全局模型中被忽略的种类我们把他们的数据集独立出来，作为新的数据集Focused Group，然后对于Focused Group和非Focused Group我们在模型中给出不同的权重，本质上也是一种加权，只不是过不是直接针对样本加权，而是通过调整模型的正则项使模型更加侧重Focused的数据集，从而更好的加强这些数据的准确度。以一个常规的矩阵分解模型来做表述的话就像下面这样：</p>
+<div align=center><img src="3.png" style="zoom:30%;"/></div>
+
+<p>理论上可以通过不调节样本权重，而是通过调节模型正则项系数（比如上面的$L_2$正则权重）让不同类型的样本都得到更好的学习。讲到这里已经可以猜到的是我并没有真正在线上试图用这个方法代替掉采样。这个方法和样本加权一样本质上都没有离开调整超参（我们用户分了8组，意味着有8个权重要调整，<del>原谅我懒</del>，而且随着系统不断变化，这些超参留在系统里也可能带来问题。不过说回来我还是在语料采样的基础上尝试将这个方法离线和在线都进行了简单的实验。离线上，在不同用户组上，模型的AUC分别有0.30%到0.98%的相对提升，上线后整体也能有1.5%-2.0%的收益。</p>
+<h1 id="3-偏差修正"><a href="#3-偏差修正" class="headerlink" title="3. 偏差修正"></a>3. 偏差修正</h1><p>偏差修正的话，主要是解决因为各种诸如样式（展现位置/方式）环境（屏幕分辨率大小）等造成的样本点击概率不公平问题。从公平性的角度很好理解：如果我们将资源随机打乱展现给用户，如果资源在每个位置上的点击概率都相同，那么展现概率就是公平的。（<del>但我个人没有遇见过这样的场景</del>）在不不公平的情况下模型会对用户的好感度会出现偏差（用户点击1号位置的资源可能只是因为资源在1号位置）这种偏差会随着推荐系统feedback loop被进一步放大。</p>
+<p>这里就以position bias作为代表来讲下我们的实践，这个问题已经很多地方都有讨论过了，每个资源最后是否会被用户关注会受到展现位置的影响，比如展现靠前的资源就是会比顺序考后的资源更容易被注意到，从而更容易获得点击；资源在前端展示前后是否存在广告等都会对ctr预估造成偏差，导致预估不准确。最早的时候就有COEC这种方案以标准化的方式去消除偏差，但COEC的假设太强了，我们也开始试图通过模型的方式去解决。</p>
+<p>先总结下常见的几种思路吧：</p>
+<ul>
+<li>随机呈现结果，获取数据计算position bias ，作为特征参与训练。</li>
+<li>选择一种模型建模用户行为，其实就是上一种痛方法的模型版本，训练时候将该模型的输出参与主模型训练。</li>
+<li>直接将position信息作为特征，参与模型训练</li>
+<li>主模型中单独用一个子网络学习position bias</li>
+</ul>
+<p>在实际的生产环境中一般训练的时候会保留相关特征无论是外部统计或模型输出或者直接作为特征输入主模型，但线上预估时我们无法获取（大多情况下我们很难把资源在每个位置的pctr都计算一遍，成本太高，当然也有这么做的场景），一般线上都会使用默认值，所有参与排序的资源保持一致即可。</p>
+<p>我们尝试的方向主要集中在直接作为特征输入和自网络两个方向上，直接作为特征输入的情况：Google最早在<a href="https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/45530.pdf" target="_blank" rel="noopener">Deep Neural Networks for YouTube Recommendations</a> 就有实践过相关方法，只不是解决的是时间bias，这个后面单独讲，Airbnb <a href="https://arxiv.org/pdf/2002.05515.pdf" target="_blank" rel="noopener">Improving Deep Learning For Airbnb Search</a> 中介绍的也是这个思路。子网络的相关的尝试有Google <a href="https://dl.acm.org/doi/10.1145/3298689.3346997" target="_blank" rel="noopener">Recommending What Video to Watch Next: A Multitask Ranking System</a> 使用的shallow tower的方法，以及华为在 <a href="https://www.researchgate.net/publication/335771749_PAL_a_position-bias_aware_learning_framework_for_CTR_prediction_in_live_recommender_systems" target="_blank" rel="noopener">PAL: a position-bias aware learning framework for CTR prediction in live recommender systems</a> 介绍的PAL的方法。这几种方法我都有一些简单的尝试，可以简单总结下。</p>
+<h2 id="3-1-直接作为特征输出模型"><a href="#3-1-直接作为特征输出模型" class="headerlink" title="3.1 直接作为特征输出模型"></a>3.1 直接作为特征输出模型</h2><p>这个部分其实没啥好讲的，就是训练的时候带上这个特征，线上预测的时候带着这个特征这么简单。如果线性模型的话就可以简单的解释，但如果是NN模型的话，解释起来就会有一些问题：NN网络部分做了隐式交叉，如果在训练的时候（100%的样本）包含这个特征，而在预测的时候全至为0或者其余的固定值，会直接影响到下一层网络输入数据的分布，而更高维度的特征表达也会受到影响，所以Airbnb这边对这个特征加了个dropout层来在预测的时候模拟线上遇到的情况，让模型能够捕捉到这种情况，也算是一种这种的方案吧。</p>
+<p>剩下文章里的亮点就是关于position bias特征的离线评估了。在我们的环境中加入了这个特征后，训练集上和测试集上的auc应该都是提升的，但这种提升是<del>虚假的</del>，因为我们在预测的时候是没有bias特征的，我们需要将测试集中的bias feature移除。这时候因为训练和测试样本特征分布不一致，所以会出现测试集上auc明显下降的情况，对比不包含bias feature的模型，在相同测试集（去掉bias feature）下，auc甚至更低。</p>
+<p>按照常规经验， auc降低的模型上线往往不会更好，但这个模型是个例外。在这个情况下，离线auc评估是不那么准确的，但同样带来了新问题，不同的bias feature 也好模型也罢，怎么离线对比？</p>
+<h2 id="3-2-子网络相关尝试"><a href="#3-2-子网络相关尝试" class="headerlink" title="3.2 子网络相关尝试"></a>3.2 子网络相关尝试</h2>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2021-03-26T14:41:02.019Z" itemprop="dateUpdated">2021-03-26 22:41:02</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="mx-1024">
+            mx-1024
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" rel="tag">推荐系统</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/2020/07/07/47603/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Node2vec在推荐系统中的简单应用</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'fc87489e82310dfd24d3',
+          clientSecret: '9f0553768b9fb8c0cb4bc04a7af0f921596ce742',
+          repo: 'mx-1024',
+          owner: 'mx-1024',
+          admin: ['mx-1024'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>mx-1024 &copy; 2019 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
