@@ -25,25 +25,28 @@ ga('send', 'pageview');
     
     
     
-    <title>推荐系统公平性优化 | 脑洞 | 框架 结构 混沌 邪</title>
+    <title>对语料采样和bias修正的新理解与尝试 | 脑洞 | 框架 结构 混沌 邪</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
     <meta name="keywords" content="推荐系统">
-    <meta name="description" content="(未完待续)  总结这些东西好累……">
+    <meta name="description" content="总结这些东西好累……">
 <meta property="og:type" content="article">
-<meta property="og:title" content="推荐系统公平性优化">
+<meta property="og:title" content="对语料采样和bias修正的新理解与尝试">
 <meta property="og:url" content="http://yoursite.com/posts/2021/03/26/77821/index.html">
 <meta property="og:site_name" content="脑洞">
-<meta property="og:description" content="(未完待续)  总结这些东西好累……">
+<meta property="og:description" content="总结这些东西好累……">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/posts/2021/03/26/77821/1.jpeg">
 <meta property="og:image" content="http://yoursite.com/posts/2021/03/26/77821/2.png">
 <meta property="og:image" content="http://yoursite.com/posts/2021/03/26/77821/3.png">
+<meta property="og:image" content="http://yoursite.com/posts/2021/03/26/77821/6.png">
+<meta property="og:image" content="http://yoursite.com/posts/2021/03/26/77821/4.png">
+<meta property="og:image" content="http://yoursite.com/posts/2021/03/26/77821/5.png">
 <meta property="article:published_time" content="2021-03-26T14:16:31.000Z">
-<meta property="article:modified_time" content="2021-03-26T14:41:02.019Z">
+<meta property="article:modified_time" content="2021-04-21T14:31:09.876Z">
 <meta property="article:author" content="mx-1024">
 <meta property="article:tag" content="推荐系统">
 <meta name="twitter:card" content="summary">
@@ -119,7 +122,7 @@ ga('send', 'pageview');
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">推荐系统公平性优化</div>
+        <div class="flex-col header-title ellipsis">对语料采样和bias修正的新理解与尝试</div>
         
         
     </div>
@@ -127,7 +130,7 @@ ga('send', 'pageview');
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">推荐系统公平性优化</h1>
+        <h1 class="title">对语料采样和bias修正的新理解与尝试</h1>
         <h5 class="subtitle">
             
                 <time datetime="2021-03-26T14:16:31.000Z" itemprop="datePublished" class="page-time">
@@ -155,11 +158,11 @@ ga('send', 'pageview');
     </aside>
 
 
-<article id="post-推荐系统公平性优化"
+<article id="post-对语料采样和bias修正的新理解与尝试"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">推荐系统公平性优化</h1>
+        <h1 class="post-card-title">对语料采样和bias修正的新理解与尝试</h1>
         <div class="post-meta">
             <time class="post-time" title="2021-03-26 22:16:31" datetime="2021-03-26T14:16:31.000Z"  itemprop="datePublished">2021-03-26</time>
 
@@ -175,7 +178,7 @@ ga('send', 'pageview');
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <blockquote>
-<p>(未完待续)  总结这些东西好累……</p>
+<p>总结这些东西好累……</p>
 </blockquote>
 <a id="more"></a>
 
@@ -238,7 +241,54 @@ ga('send', 'pageview');
 <h2 id="3-1-直接作为特征输出模型"><a href="#3-1-直接作为特征输出模型" class="headerlink" title="3.1 直接作为特征输出模型"></a>3.1 直接作为特征输出模型</h2><p>这个部分其实没啥好讲的，就是训练的时候带上这个特征，线上预测的时候带着这个特征这么简单。如果线性模型的话就可以简单的解释，但如果是NN模型的话，解释起来就会有一些问题：NN网络部分做了隐式交叉，如果在训练的时候（100%的样本）包含这个特征，而在预测的时候全至为0或者其余的固定值，会直接影响到下一层网络输入数据的分布，而更高维度的特征表达也会受到影响，所以Airbnb这边对这个特征加了个dropout层来在预测的时候模拟线上遇到的情况，让模型能够捕捉到这种情况，也算是一种这种的方案吧。</p>
 <p>剩下文章里的亮点就是关于position bias特征的离线评估了。在我们的环境中加入了这个特征后，训练集上和测试集上的auc应该都是提升的，但这种提升是<del>虚假的</del>，因为我们在预测的时候是没有bias特征的，我们需要将测试集中的bias feature移除。这时候因为训练和测试样本特征分布不一致，所以会出现测试集上auc明显下降的情况，对比不包含bias feature的模型，在相同测试集（去掉bias feature）下，auc甚至更低。</p>
 <p>按照常规经验， auc降低的模型上线往往不会更好，但这个模型是个例外。在这个情况下，离线auc评估是不那么准确的，但同样带来了新问题，不同的bias feature 也好模型也罢，怎么离线对比？</p>
-<h2 id="3-2-子网络相关尝试"><a href="#3-2-子网络相关尝试" class="headerlink" title="3.2 子网络相关尝试"></a>3.2 子网络相关尝试</h2>
+<p>Airbnb在他们调整dropout的参数的时候针对同一份测试数据，在保留position特征的情况下计算了$NDCG_{rel+pbias}$ 然后在通过计算positon全部设置为0的情况的$NDCG_{rel}$  。通过比较NDCG的差异来评估position信息对排序结果的贡献，然后找到一个合适的dropout rate。我是觉得这只是强行给调参做个离线的评估（我骗我自己），降低线上实验成本。文章中为啥没有针对这份测试数据的在不包含bias feature的模型$NDCG_{base}$信息呢，盲猜一个$NDCG_{rel} &lt; NDCG_{base}$  说了还得出来解释这个问题…… 在我们的实验场景下评估是用的auc，实验模型在position为0的情况下auc比base低。</p>
+<p>至于这个离线评估思路，仅供参考吧。在我们的场景下，这个方法上线后大约有1.5%的提升，也算是有收益。</p>
+<div align=center><img src="6.png" style="zoom:80%;"/></div>
+
+
+
+
+
+<h2 id="3-2-子网络相关尝试"><a href="#3-2-子网络相关尝试" class="headerlink" title="3.2 子网络相关尝试"></a>3.2 子网络相关尝试</h2><p>这部分理解起来也很简单，基本都是模型结构相关的了，可以直接放MMoE的模型结构上来了。</p>
+<div align=center><img src="4.png" style="zoom:80%;"/></div>
+
+<p>我们需要重点关注的是红框部分，是处理bias特征的核心，至于红框右侧则可以是任何深度模型。</p>
+<ul>
+<li>输入就是 ‘Features for selection bias’ </li>
+<li>shallow tower 可以是一个一层的线性变换，整体模型架构就和Wide&amp;Deep很接近了；也可以是一个浅层网络，看需求</li>
+<li>shallow tower 的logit是直接拼接到主模型的</li>
+<li>针对position特征加入10%的dropout，防止模型过度依赖position特征</li>
+<li>特征里将device type和position feature交叉是因为在不同设备之间他们的position有较大差别。</li>
+</ul>
+<p>不得不说Google的文章将的还是很细致，我们训练的过程中确实遇到了模型过度依赖position特征的问题，导致模型训练出现问题。甚至连特征的设计细节都讲了（为啥要和device type组合，我一开始想着也是这个特征我们一般都放到主模型里，训练和预测的时候都能获取，不会出现偏差）。这个版本的模型我们还在线上同步进行验证，等有结果的时候我再来同步。</p>
+<p>剩下就是华为提出的PAL的思路了。</p>
+<div align=center><img src="5.png" style="zoom:100%;"/></div>
+
+<p>他们的思路主要是基于一些非常强的假设：</p>
+<ul>
+<li>对于一个资源$x$是是否真正被用户$seen$关注到只和位置$pos$相关</li>
+<li>用户是否点击资源$x$除了和资源本身相关外只和该资源是否被用户关注到有关</li>
+</ul>
+<p>于是资源$x$在位置$pos$被点击即$y=1$的概率可以描述为</p>
+<p>$p(y=1|x,pos)=p(seen|pos)p(y=1|x,seen)$.</p>
+<p>而$p(seen|pos)$就是shallow tower想要求解的问题， 上面是模型做一个线性的融合，相当于pCTR的参数，这里直接就通过multiply的方式和pCTR进行融合，相当于直接对pCTR进行加权。模型的loss function变成了：</p>
+<p>$L(\theta_{ps},\theta_{pCTR}=\frac{1}{N}\sum_{i=1}^{N}l(y_i,bCTR_i))=\frac{1}{N}\sum_{i=1}^{N}l(y_i,ProbSeen_i \times pCTR_i)$</p>
+<p>至于线上排序部分，只使用$pCTR$进行排序，而不是$bCTR$</p>
+<p>这个很好理解，也没有太多可讲的了，剩下他们实验里有个有趣的经验：他们把所有测试数据item的postion都分别固定为1-10（他们position应该就这10个值）进行离线测试： auc和logloss在所有样本的position指定为1的情况下是最差的，然后线上测试的时候反而是pos1的位置提升幅度最大，pos9离线auc最好，线上也比pos1差很多，提升幅度也几乎是最低的。一开始觉的还没问题，等后面越想越不对劲。如果一个测试集按照$pCTR$计算出来的auc为$AUC_1$ 将所有$pCTR$都乘以一个固定的$ProbSeen_1$重新计算auc得到的$AUC_2$应该和$AUC_1$是完全相同的吧？可能是文章表达有误 <code>test data</code> 指代的是<code>dataset</code>，包含了训练和测试数据？</p>
+<p>文章里讲他们这么用了之后提升至多有35%的提升，可能也主要是因为他们的应用场景好像是手机app商城那种轮播页面的推荐，一次只展现一条，但拉取推荐结果的时候可能拉取10条左右。这种场景确实受位置影响很大。另外可能就是他们baseline也很低吧（笑）。</p>
+<p>##　3.3 一些有的没的</p>
+<blockquote>
+<p> 小流量全随机数据对位置偏差进行统计上的估计。</p>
+</blockquote>
+<p>是个思路，直接通过统计的方式得倒真实的ctr信息：但有这么几个问题</p>
+<p>1）小流量是多小？全随机的话代价还是很高的 。而且position bias也会受各种环境因素影响，不是一直不变的</p>
+<p>2)  如果在排序结果按照分数讲数据按顺序呈现的话，排序本身会对纯随机的positon bias造成进一步的影响。</p>
+<p>这个方案个人感觉只适合分析，至于解决，建议还是交给模型。</p>
+<blockquote>
+<p>时间作为bias特征引入模型</p>
+</blockquote>
+<p>最早Google介绍的时候，只是一个简单的特征，一带而过那种，但后来用起来的时候效果却异常惊艳。特征很简单训练最后一个时间减去日志产生的时间，在线上排序的时候统一设置为0，这不就上面处理posibion bias的思路嘛！如果没有时间bias，则认为资源在上线的第一个起到结束资源的点击率是固定的，然而实际上，随着资源在线上的汰换，ctr一直在波动。如果简单的资源的创建时间加入特征里，系统则会更倾向于旧资源：旧资源能够留在系统里说明数据表现足够好，大量新资源需要冷启动，能留下的只是一少部分，平均下来是不如旧资源的，这样从模型的角度出发，是会减少新资源的分发的。而用日志产生的时间和当前时间的差值则相当于模拟出了资源在时间维度上分布情况，移除这个bias后，对新旧资源都更加公平。之前尝试这个特征的时候，虽然排序的离线评估和在线效果上都无太大变化，但在新资源的分发能力上，确能够比base版本提升10%+，在不降低指标的情况下加速了数据的冷启动。</p>
+
         </div>
 
         <blockquote class="post-copyright">
@@ -246,7 +296,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2021-03-26T14:41:02.019Z" itemprop="dateUpdated">2021-03-26 22:41:02</time>
+    最后更新时间：<time datetime="2021-04-21T14:31:09.876Z" itemprop="dateUpdated">2021-04-21 22:31:09</time>
 </span><br>
 
 
